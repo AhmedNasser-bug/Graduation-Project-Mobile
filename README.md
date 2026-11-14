@@ -1,6 +1,6 @@
 # NephroGuard — Bedside Mobile Nurse App (`Graduation-Project-Mobile`)
 
-> **Platform Hub:** [`NephroGuard.vercel.app`](https://nephroguard.vercel.app)  
+> **Platform Hub & Landing Portal:** [`AhmedNasser-bug/Grad_project_landing`](https://github.com/AhmedNasser-bug/Grad_project_landing)  
 > **Related Repositories:**  
 > - **Desktop Workstation:** [`AhmedNasser-bug/Graduation-Project-Desktop`](https://github.com/AhmedNasser-bug/Graduation-Project-Desktop)  
 > - **Backend Engine (`.NET 9`):** [`xByteA/Graduation-Project-Backend`](https://github.com/xByteA/Graduation-Project-Backend)  
