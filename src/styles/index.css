@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --canvas-bg: #EAF6FA;
+  --primary-teal: #12617A;
+  --navy-dark: #0B2E40;
+  --slate-muted: #5A7684;
+  --card-border: #7BAEC4;
+  --card-radius: 16px;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #0f172a;
+  color: #0B2E40;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Card container helper strictly matching mockups */
+.clinical-card {
+  background-color: #FFFFFF;
+  border: 1px solid #7BAEC4;
+  border-radius: 16px;
+  box-shadow: 0 1px 3px rgba(11, 46, 64, 0.05);
+}
+
+/* 48px touch ergonomics for bedside clinical floor operations */
+.clinical-btn {
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  border-radius: 9999px;
+  transition: all 0.15s ease-in-out;
+}
+
+.clinical-btn:active {
+  transform: scale(0.98);
+}
+
+/* Hide scrollbar for clean mobile preview */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

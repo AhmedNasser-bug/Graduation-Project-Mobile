@@ -1,13 +1,66 @@
-# NephroEdge — Offline-First Bedside Mobile App (`Graduation-Project-Mobile`)
+# NephroGuard — Bedside Mobile Nurse App (`Graduation-Project-Mobile`)
 
-> **Master Documentation & Quick Dev Setup Hub:**  
-> 👉 **[xByteA/Graduation-Project-Documentation](https://github.com/xByteA/Graduation-Project-Documentation)** *(Contains `API_CONTRACTS_V1.md`, `OUT_OF_SCOPE_BACKLOG.md`, and the 5-repo architecture diagrams)*
+> **Platform Hub:** [`NephroGuard.vercel.app`](https://nephroguard.vercel.app)  
+> **Related Repositories:**  
+> - **Desktop Workstation:** [`AhmedNasser-bug/Graduation-Project-Desktop`](https://github.com/AhmedNasser-bug/Graduation-Project-Desktop)  
+> - **Backend Engine (`.NET 9`):** [`xByteA/Graduation-Project-Backend`](https://github.com/xByteA/Graduation-Project-Backend)  
+> - **Master Documentation Hub:** [`xByteA/Graduation-Project-Documentation`](https://github.com/xByteA/Graduation-Project-Documentation)
+
+Offline-first hemodialysis bedside nurse application built with **React 18 + Vite 6 + TypeScript + Tailwind CSS + `sql.js` (in-browser SQLite WASM)** and **Capacitor 8 Android**.
 
 ---
 
-## 1. Purpose & Prototype Scope
+## Option 1 — One-Command Native Setup (`Node >= 20`)
 
-Offline-first Nurse & Bedside Tablet application synchronized with the clinic workstation backend ([`xByteA/Graduation-Project-Backend`](https://github.com/xByteA/Graduation-Project-Backend)):
-* **Zero-Latency Active Shift Board:** Pulls `GET /api/v1/shift/active` (`vw_ActiveShiftSessionBoard`) displaying Bed #, Patient Name, MRN, Target Dry Weight, Pre-Weight, IDWG Fluid Gain, and Latest BP/HR/UF.
-* **1-Tap Intradialytic Vitals & Local IDH Guard:** Pushes time-series vitals to `POST /api/v1/sessions/{sessionId}/telemetry` and immediately displays deterministic MIT MIMIC-IV / KDOQI IDH alerts ($\text{SBP} < 90\text{ mmHg}$ or $\Delta\text{SBP} \ge 20\text{ mmHg}$).
-* **Transactional Outbox Sync:** Queues bedside mutations offline with SHA-256 integrity hashes and syncs via `POST /api/v1/sync/outbox-batch`.
+**Windows (PowerShell):**
+
+```powershell
+git clone https://github.com/AhmedNasser-bug/Graduation-Project-Mobile.git
+cd Graduation-Project-Mobile
+.\setup.ps1 -Dev
+```
+
+**macOS / Linux:**
+
+```bash
+git clone https://github.com/AhmedNasser-bug/Graduation-Project-Mobile.git
+cd Graduation-Project-Mobile
+chmod +x setup.sh
+./setup.sh --dev
+```
+
+Then open **`http://localhost:5173`** in Chrome/Edge (toggle DevTools mobile view `390x844` for the full bedside phone frame).
+
+Verify TypeScript compilation + Vite production bundle without starting the server:
+
+```powershell
+.\setup.ps1 -VerifyOnly
+```
+
+---
+
+## Option 2 — Docker Container (Zero Host Node Install)
+
+```bash
+docker build -t nephroguard-mobile .
+docker run --rm -p 5173:80 nephroguard-mobile
+```
+
+*(If Docker Compose is installed, `docker compose up --build` also runs directly.)*
+
+---
+
+## Option 3 — Android Studio / APK Sync (Capacitor)
+
+```bash
+npm ci && npm run build
+npx cap sync android
+npx cap open android
+```
+
+---
+
+## Environment Configuration (Optional)
+
+The mobile prototype runs **100% locally offline** by default using embedded `sql.js` (`public/sql-wasm.wasm`) and browser `BroadcastChannel` / local SSE telemetry.  
+To connect optional Firebase Cloud telemetry overrides, copy `.env.example` to `.env.local` and supply your project keys (never commit `.env` or `.env.local`).

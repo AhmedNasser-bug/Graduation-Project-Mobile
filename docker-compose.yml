@@ -1,0 +1,9 @@
+services:
+  mobile-bedside:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nephroguard-mobile-bedside
+    ports:
+      - "5173:80"
+    restart: unless-stopped

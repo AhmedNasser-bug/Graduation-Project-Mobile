@@ -1,0 +1,24 @@
+# Dependencies & build artifacts
+node_modules/
+dist/
+.vite/
+
+# Environment secrets (WAF SEC-01)
+.env
+.env.local
+.env.*.local
+
+# Android local build artifacts
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+*.apk
+*.aab
+*.iml
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
